@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize Swiper
   const swiper = new Swiper(".swiper-wrap", {
     // Basic configuration
-    slidesPerView: 1,
-    spaceBetween: 24,
+    slidesPerView: "auto",
+    spaceBetween: 0,
     loop: true,
     centeredSlides: false,
 
@@ -121,33 +121,54 @@ function initializeSlider() {
     return;
   }
 
-  // Store original styles to preserve Webflow styling
-  const originalDisplay = getComputedStyle(sliderContainer).display;
-  const originalFlexDirection = getComputedStyle(sliderContainer).flexDirection;
-
   // Add required Swiper classes to Webflow structure
   sliderContainer.classList.add("swiper");
 
-  // Create or find swiper wrapper
-  let swiperWrapper = sliderContainer.querySelector(".swiper-wrapper");
+  // Find existing wrapper element (likely a Webflow CMS list)
+  let swiperWrapper = sliderContainer.querySelector(".w-dyn-list, .collection-list-wrapper, [data-w-dyn='list']");
+
+  // If no Webflow CMS wrapper found, look for any existing wrapper
   if (!swiperWrapper) {
+    swiperWrapper = sliderContainer.querySelector(".swiper-wrapper");
+  }
+
+  // If still no wrapper found, look for any direct child that contains slides
+  if (!swiperWrapper) {
+    const potentialWrappers = sliderContainer.children;
+    for (let wrapper of potentialWrappers) {
+      if (wrapper.querySelector(".swiper-slide") || wrapper.querySelector(".w-dyn-item")) {
+        swiperWrapper = wrapper;
+        break;
+      }
+    }
+  }
+
+  // If we found an existing wrapper, preserve its classes and add swiper-wrapper
+  if (swiperWrapper) {
+    // Add swiper-wrapper class while preserving existing Webflow classes
+    swiperWrapper.classList.add("swiper-wrapper");
+
+    // Ensure all slide items have the swiper-slide class
+    const slides = swiperWrapper.querySelectorAll(".w-dyn-item, .collection-item, .swiper-slide");
+    slides.forEach((slide) => {
+      slide.classList.add("swiper-slide");
+    });
+  } else {
+    // Fallback: create new wrapper if none exists
     swiperWrapper = document.createElement("div");
     swiperWrapper.className = "swiper-wrapper";
 
-    // Preserve any existing Webflow classes on the container
-    const existingClasses = sliderContainer.className;
-
-    // Move all swiper-slide elements into the wrapper (they already have the right class!)
-    const slides = sliderContainer.querySelectorAll(".swiper-slide");
+    // Move all potential slide elements into the wrapper
+    const slides = sliderContainer.querySelectorAll(".swiper-slide, .w-dyn-item, .collection-item");
     slides.forEach((slide) => {
-      // Slides already have swiper-slide class, just move them
+      slide.classList.add("swiper-slide");
       swiperWrapper.appendChild(slide);
     });
 
     sliderContainer.appendChild(swiperWrapper);
   }
 
-  // Initialize the slider (this will run even if already initialized above)
+  // Initialize the slider
   new Swiper(".swiper-wrap", {
     slidesPerView: 1,
     spaceBetween: 24,
