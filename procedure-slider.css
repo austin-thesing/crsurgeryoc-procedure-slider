@@ -1,32 +1,28 @@
-/* Procedure Slider Styles for Swiper.js + Webflow */
+/* Minimal Swiper.js Styles - Webflow Compatible */
 
-/* Base Swiper container */
-.procedure-slider-wrap {
-  width: 100%;
-  height: auto;
+/* Only override when Swiper is initialized */
+.procedure-slider-wrap.swiper {
   overflow: hidden;
-  position: relative;
 }
 
-/* Swiper wrapper */
+/* Essential Swiper wrapper styles */
 .procedure-slider-wrap .swiper-wrapper {
-  display: flex;
-  align-items: stretch;
-}
-
-/* Individual slides */
-.procedure-slide-outer {
-  flex-shrink: 0;
-  height: auto;
   position: relative;
-  transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
 }
 
-/* Procedure slide component */
-.procedure-slide {
+/* Essential slide styles - minimal interference */
+.procedure-slide-outer.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  transition-property: transform;
 }
 
 /* Navigation buttons */
@@ -90,43 +86,24 @@
   }
 }
 
-/* Smooth slide transitions */
-.procedure-slide-outer {
-  opacity: 1;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Optional: Add subtle hover effect */
-.procedure-slide:hover {
+/* Optional hover effect - only applies to slides in active slider */
+.procedure-slider-wrap.swiper .procedure-slide:hover {
   transform: translateY(-5px);
   transition: transform 0.3s ease;
 }
 
-/* Ensure slides maintain aspect ratio */
-.procedure-slide-outer.swiper-slide {
-  height: auto;
-  display: flex;
-}
-
-/* Fix for Webflow collection list styling */
-.procedure-slider-wrap.w-dyn-list {
-  display: block;
+/* Webflow collection list compatibility */
+.procedure-slider-wrap.w-dyn-list.swiper {
+  /* Preserve your existing Webflow flex/grid styles when not initialized */
 }
 
 .swiper-wrapper .w-dyn-items {
   display: contents;
 }
 
-/* Loading state (optional) */
+/* Graceful fallback when Swiper is not loaded */
 .procedure-slider-wrap:not(.swiper-initialized) {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.procedure-slider-wrap:not(.swiper-initialized) .procedure-slide-outer {
-  display: inline-block;
-  vertical-align: top;
-  margin-right: 24px;
+  /* Keeps your original Webflow styling intact */
 }
 
 /* Accessibility improvements */

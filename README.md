@@ -7,8 +7,9 @@ A responsive procedure slider built with Swiper.js and designed to work seamless
 - 🚀 **Modern Build System**: Uses Bun for fast bundling
 - 📱 **Responsive Design**: Adapts to mobile, tablet, and desktop
 - 🎯 **Webflow Integration**: Works with your existing Webflow CMS structure
+- 🎨 **Minimal CSS**: Only essential styles - preserves your Webflow styling
 - ⚡ **Auto-rebuild**: Watch mode for development
-- 🎨 **Customizable**: Easy to modify styles and behavior
+- 🛠️ **Customizable**: Easy to modify styles and behavior via CSS custom properties
 - ♿ **Accessible**: Built with accessibility in mind
 
 ## Quick Start
@@ -82,6 +83,8 @@ Your Webflow collection should have this structure:
 <script src="/path/to/procedure-slider.js"></script>
 ```
 
+> **Important**: The CSS is minimal and only includes essential Swiper functionality. Your existing Webflow flex/grid styling on `.procedure-slider-wrap` will be preserved! The CSS only applies styles when Swiper is initialized.
+
 ### Optional Navigation Elements
 
 Add these elements anywhere in your page for navigation:
@@ -103,6 +106,8 @@ Add these elements anywhere in your page for navigation:
 
 ### Customization
 
+#### JavaScript Configuration
+
 Edit `src/procedure-slider.js` to modify:
 
 - Slide counts per breakpoint
@@ -111,6 +116,22 @@ Edit `src/procedure-slider.js` to modify:
 - Navigation options
 
 After making changes, run `bun run build` to update the production files.
+
+#### CSS Styling with Custom Properties
+
+Customize navigation and pagination appearance using CSS custom properties in your Webflow custom CSS:
+
+```css
+:root {
+  --swiper-navigation-size: 50px;
+  --swiper-navigation-color: #ffffff;
+  --swiper-pagination-color: #007aff;
+  --swiper-pagination-bullet-size: 10px;
+  --swiper-navigation-sides-offset: 20px;
+}
+```
+
+This approach keeps your styling in Webflow while allowing easy customization!
 
 ## Development
 

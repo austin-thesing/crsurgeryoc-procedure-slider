@@ -35,9 +35,9 @@ try {
   if (result.success) {
     console.log("✅ Build completed successfully!");
 
-    // Copy CSS file to dist
-    console.log("📄 Copying CSS file...");
-    await $`cp procedure-slider.css dist/procedure-slider.css`;
+    // Copy minimal CSS file to dist
+    console.log("📄 Copying minimal CSS file...");
+    await $`cp procedure-slider-minimal.css dist/procedure-slider.css`;
 
     console.log("📊 Build stats:");
     result.outputs.forEach((output) => {

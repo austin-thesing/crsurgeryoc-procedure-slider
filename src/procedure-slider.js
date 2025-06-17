@@ -121,6 +121,10 @@ function initializeSlider() {
     return;
   }
 
+  // Store original styles to preserve Webflow styling
+  const originalDisplay = getComputedStyle(sliderContainer).display;
+  const originalFlexDirection = getComputedStyle(sliderContainer).flexDirection;
+
   // Add required Swiper classes to Webflow structure
   sliderContainer.classList.add("swiper");
 
@@ -129,6 +133,9 @@ function initializeSlider() {
   if (!swiperWrapper) {
     swiperWrapper = document.createElement("div");
     swiperWrapper.className = "swiper-wrapper";
+
+    // Preserve any existing Webflow classes on the container
+    const existingClasses = sliderContainer.className;
 
     // Move all procedure-slide-outer elements into the wrapper
     const slides = sliderContainer.querySelectorAll(".procedure-slide-outer");
