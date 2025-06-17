@@ -12,26 +12,6 @@
   z-index: 1;
 }
 
-/* Essential wrapper styles */
-.swiper-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  display: flex;
-  transition-property: transform;
-  box-sizing: content-box;
-}
-
-/* Essential slide styles */
-.swiper-slide {
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition-property: transform;
-}
-
 /* Navigation buttons - minimal styling */
 .swiper-button-next,
 .swiper-button-prev {

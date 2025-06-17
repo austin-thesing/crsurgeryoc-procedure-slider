@@ -22,10 +22,10 @@ const buildConfig = {
   },
 };
 
-// Function to copy CSS file
+// Function to copy and minify CSS file
 async function copyCSSFile() {
-  console.log("📄 Copying CSS file...");
-  await $`cp procedure-slider.css dist/procedure-slider.css`;
+  console.log("📄 Copying and minifying CSS file...");
+  await $`bunx csso procedure-slider.css --output dist/procedure-slider.css`;
 }
 
 // Function to run the full build
