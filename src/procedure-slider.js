@@ -13,7 +13,7 @@ Swiper.use([Navigation, Pagination, Autoplay, A11y]);
 // Procedure Slider with Swiper.js
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize Swiper
-  const swiper = new Swiper(".procedure-slider-wrap", {
+  const swiper = new Swiper(".swiper-wrap", {
     // Basic configuration
     slidesPerView: 1,
     spaceBetween: 24,
@@ -74,12 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     // Custom slide class mapping for Webflow
-    slideClass: "procedure-slide-outer",
+    slideClass: "swiper-slide",
     wrapperClass: "swiper-wrapper",
   });
 
   // Optional: Add hover pause functionality
-  const sliderContainer = document.querySelector(".procedure-slider-wrap");
+  const sliderContainer = document.querySelector(".swiper-wrap");
   if (sliderContainer) {
     sliderContainer.addEventListener("mouseenter", () => {
       swiper.autoplay.stop();
@@ -115,9 +115,9 @@ function initializeSlider() {
   }
 
   // Check if the slider container exists
-  const sliderContainer = document.querySelector(".procedure-slider-wrap");
+  const sliderContainer = document.querySelector(".swiper-wrap");
   if (!sliderContainer) {
-    console.warn("Slider container .procedure-slider-wrap not found");
+    console.warn("Slider container .swiper-wrap not found");
     return;
   }
 
@@ -137,10 +137,10 @@ function initializeSlider() {
     // Preserve any existing Webflow classes on the container
     const existingClasses = sliderContainer.className;
 
-    // Move all procedure-slide-outer elements into the wrapper
-    const slides = sliderContainer.querySelectorAll(".procedure-slide-outer");
+    // Move all swiper-slide elements into the wrapper (they already have the right class!)
+    const slides = sliderContainer.querySelectorAll(".swiper-slide");
     slides.forEach((slide) => {
-      slide.classList.add("swiper-slide");
+      // Slides already have swiper-slide class, just move them
       swiperWrapper.appendChild(slide);
     });
 
@@ -148,7 +148,7 @@ function initializeSlider() {
   }
 
   // Initialize the slider (this will run even if already initialized above)
-  new Swiper(".procedure-slider-wrap", {
+  new Swiper(".swiper-wrap", {
     slidesPerView: 1,
     spaceBetween: 24,
     loop: true,

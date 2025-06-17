@@ -41,9 +41,8 @@ procedure-slider/
 ├── dist/                       # Production-ready files
 │   ├── procedure-slider.js     # Bundled JavaScript (93KB)
 │   ├── procedure-slider.css    # Styles
-│   ├── procedure-slider.js.map # Source map
-│   └── test.html              # Test page
-├── procedure-slider.css        # Source CSS styles
+│   └── procedure-slider.js.map # Source map
+├── procedure-slider-minimal.css # Source CSS styles
 ├── build.js                   # Bun build configuration
 └── package.json               # Dependencies and scripts
 ```
@@ -55,16 +54,23 @@ procedure-slider/
 Your Webflow collection should have this structure:
 
 ```html
-<div class="procedure-slider-wrap">
-  <!-- CMS List -->
-  <div class="procedure-slide-outer">
-    <!-- CMS List Item -->
-    <div class="procedure-slide">
-      <!-- Your Component -->
-      <!-- Your content here -->
+<div class="slider-outer">
+  <div class="w-dyn-list">
+    <div role="list" class="swiper-wrap w-dyn-items">
+      <div role="listitem" class="swiper-slide w-dyn-item">
+        <div class="procedure-slide">
+          <!-- Your Component Content -->
+        </div>
+      </div>
+      <!-- More slides... -->
     </div>
   </div>
-  <!-- More slides... -->
+  <div class="slider-ui-wrapper">
+    <!-- Optional navigation elements -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+  </div>
 </div>
 ```
 
@@ -85,15 +91,9 @@ Your Webflow collection should have this structure:
 
 > **Important**: The CSS is minimal and only includes essential Swiper functionality. Your existing Webflow flex/grid styling on `.procedure-slider-wrap` will be preserved! The CSS only applies styles when Swiper is initialized.
 
-### Optional Navigation Elements
+### Navigation Elements
 
-Add these elements anywhere in your page for navigation:
-
-```html
-<div class="swiper-button-next"></div>
-<div class="swiper-button-prev"></div>
-<div class="swiper-pagination"></div>
-```
+Navigation elements are included in the `.slider-ui-wrapper` div as shown in the structure above. The JavaScript will automatically detect and use these elements.
 
 ## Configuration
 
@@ -145,7 +145,7 @@ This will watch for changes and automatically rebuild the files.
 
 ### Testing
 
-Open `dist/test.html` in your browser to test the slider locally.
+Test the slider directly in your Webflow project after uploading the production files.
 
 ### Build Commands
 
