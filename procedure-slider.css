@@ -3,7 +3,6 @@
 
 /* Essential Swiper container - only when initialized */
 .swiper {
-  overflow: hidden;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -11,76 +10,8 @@
   z-index: 1;
 }
 
-/* Navigation buttons - minimal styling */
-.swiper-button-next,
-.swiper-button-prev {
-  position: absolute;
-  top: 50%;
-  width: calc(var(--swiper-navigation-size) / 44 * 27);
-  height: var(--swiper-navigation-size);
-  margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
-  z-index: 10;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--swiper-navigation-color, var(--swiper-theme-color));
-}
-
-.swiper-button-next:after,
-.swiper-button-prev:after {
-  font-family: swiper-icons;
-  font-size: var(--swiper-navigation-size);
-  text-transform: none !important;
-  letter-spacing: 0;
-  font-variant: initial;
-  line-height: 1;
-}
-
-.swiper-button-prev {
-  left: var(--swiper-navigation-sides-offset, 10px);
-  right: auto;
-}
-
-.swiper-button-prev:after {
-  content: "prev";
-}
-
-.swiper-button-next {
-  right: var(--swiper-navigation-sides-offset, 10px);
-  left: auto;
-}
-
-.swiper-button-next:after {
-  content: "next";
-}
-
-/* Pagination - minimal styling */
-.swiper-pagination {
-  position: absolute;
-  text-align: center;
-  transition: opacity 0.3s;
-  transform: translate3d(0, 0, 0);
-  z-index: 10;
-}
-
 .swiper-pagination.swiper-pagination-hidden {
   opacity: 0;
-}
-
-.swiper-pagination-bullet {
-  width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 8px));
-  height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 8px));
-  display: inline-block;
-  border-radius: 50%;
-  background: var(--swiper-pagination-bullet-inactive-color, #000);
-  opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.2);
-  cursor: pointer;
-}
-
-.swiper-pagination-bullet-active {
-  opacity: var(--swiper-pagination-bullet-opacity, 1);
-  background: var(--swiper-pagination-color, var(--swiper-theme-color));
 }
 
 /* CSS Custom Properties for easy customization */
