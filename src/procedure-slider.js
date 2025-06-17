@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Autoplay (optional)
     autoplay: {
-      delay: 5000,
+      delay: 4000, // Changed from 5000 to 4000ms
       disableOnInteraction: false,
       pauseOnMouseEnter: true,
     },
