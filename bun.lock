@@ -1,0 +1,23 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "procedure-slider",
+      "dependencies": {
+        "swiper": "^11.1.14",
+      },
+      "devDependencies": {
+        "bun-types": "latest",
+      },
+    },
+  },
+  "packages": {
+    "@types/node": ["@types/node@24.0.3", "", { "dependencies": { "undici-types": "~7.8.0" } }, "sha512-R4I/kzCYAdRLzfiCabn9hxWfbuHS573x+r0dJMkkzThEa7pbrcDWK+9zu3e7aBOouf+rQAciqPFMnxwr0aWgKg=="],
+
+    "bun-types": ["bun-types@1.2.16", "", { "dependencies": { "@types/node": "*" } }, "sha512-ciXLrHV4PXax9vHvUrkvun9VPVGOVwbbbBF/Ev1cXz12lyEZMoJpIJABOfPcN9gDJRaiKF9MVbSygLg4NXu3/A=="],
+
+    "swiper": ["swiper@11.2.8", "", {}, "sha512-S5FVf6zWynPWooi7pJ7lZhSUe2snTzqLuUzbd5h5PHUOhzgvW0bLKBd2wv0ixn6/5o9vwc/IkQT74CRcLJQzeg=="],
+
+    "undici-types": ["undici-types@7.8.0", "", {}, "sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw=="],
+  }
+}

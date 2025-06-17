@@ -1,0 +1,157 @@
+/* Procedure Slider Styles for Swiper.js + Webflow */
+
+/* Base Swiper container */
+.procedure-slider-wrap {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Swiper wrapper */
+.procedure-slider-wrap .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Individual slides */
+.procedure-slide-outer {
+  flex-shrink: 0;
+  height: auto;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Procedure slide component */
+.procedure-slide {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-top: -22px;
+  transition: all 0.3s ease;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+/* Pagination */
+.swiper-pagination {
+  bottom: 20px !important;
+  text-align: center;
+}
+
+.swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ffffff;
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .procedure-slider-wrap {
+    padding: 0 20px;
+  }
+
+  .swiper-pagination {
+    bottom: 10px !important;
+  }
+}
+
+/* Smooth slide transitions */
+.procedure-slide-outer {
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Optional: Add subtle hover effect */
+.procedure-slide:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* Ensure slides maintain aspect ratio */
+.procedure-slide-outer.swiper-slide {
+  height: auto;
+  display: flex;
+}
+
+/* Fix for Webflow collection list styling */
+.procedure-slider-wrap.w-dyn-list {
+  display: block;
+}
+
+.swiper-wrapper .w-dyn-items {
+  display: contents;
+}
+
+/* Loading state (optional) */
+.procedure-slider-wrap:not(.swiper-initialized) {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.procedure-slider-wrap:not(.swiper-initialized) .procedure-slide-outer {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 24px;
+}
+
+/* Accessibility improvements */
+.swiper-button-next:focus,
+.swiper-button-prev:focus,
+.swiper-pagination-bullet:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for fallback (if needed) */
+.procedure-slider-wrap:not(.swiper-initialized)::-webkit-scrollbar {
+  height: 6px;
+}
+
+.procedure-slider-wrap:not(.swiper-initialized)::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.procedure-slider-wrap:not(.swiper-initialized)::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.procedure-slider-wrap:not(.swiper-initialized)::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
