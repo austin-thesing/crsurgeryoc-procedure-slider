@@ -1,49 +1,80 @@
-// Import Swiper and required modules
-import Swiper from "swiper";
-Æ;
-import { Navigation } from "swiper/modules";
-
-// Only initialize Swiper once, on the .swiper container
+// Simple custom slider that moves one slide at a time
 function initializeSlider() {
+  console.log("🔍 Looking for slider elements...");
+  
   const sliderContainer = document.querySelector(".swiper");
   const nextBtn = document.querySelector(".swiper-btn-next");
   const prevBtn = document.querySelector(".swiper-btn-prev");
-
+  
   console.log("Slider container:", sliderContainer);
   console.log("Next button:", nextBtn);
   console.log("Prev button:", prevBtn);
-
+  
   if (!sliderContainer) {
-    console.error("No .swiper container found");
+    console.error("❌ No .swiper container found");
     return;
   }
-
-  if (!nextBtn || !prevBtn) {
-    console.error("Navigation buttons not found");
+  
+  const wrapper = sliderContainer.querySelector(".swiper-wrapper");
+  const slides = sliderContainer.querySelectorAll(".swiper-slide");
+  
+  console.log("Swiper wrapper:", wrapper);
+  console.log("Slides found:", slides.length);
+  
+  if (!wrapper || slides.length === 0) {
+    console.error("❌ No slides found");
     return;
   }
-
-  console.log("Initializing Swiper...");
-  const swiper = new Swiper(sliderContainer, {
-    modules: [Navigation],
-    direction: "horizontal",
-    loop: false,
-    slidesPerView: "auto",
-    initialSlide: 0,
-    slidesPerGroup: 1,
-    spaceBetween: 24,
-    centeredSlides: false,
-    mousewheel: {
-      forceToAxis: true,
-    },
-    speed: 300,
-    navigation: {
-      nextEl: ".swiper-btn-next",
-      prevEl: ".swiper-btn-prev",
-    },
-  });
-
-  console.log("Swiper initialized:", swiper);
+  
+  let currentIndex = 0;
+  
+  function updateSlider() {
+    // Get the width of one slide (assuming they're all the same width)
+    const slideWidth = slides[0].offsetWidth;
+    const spaceBetween = 24; // Match your spacing
+    const translateX = -(currentIndex * (slideWidth + spaceBetween));
+    
+    wrapper.style.transform = `translateX(${translateX}px)`;
+    wrapper.style.transition = "transform 0.3s ease";
+    
+    console.log(`Moved to slide ${currentIndex + 1}/${slides.length}`);
+    
+    // Update button states
+    if (prevBtn) {
+      prevBtn.style.opacity = currentIndex === 0 ? "0.5" : "1";
+      prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+    }
+    
+    if (nextBtn) {
+      nextBtn.style.opacity = currentIndex === slides.length - 1 ? "0.5" : "1";
+      nextBtn.style.pointerEvents = currentIndex === slides.length - 1 ? "none" : "auto";
+    }
+  }
+  
+  // Next button click
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+  }
+  
+  // Previous button click
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    });
+  }
+  
+  // Initialize
+  updateSlider();
+  
+  console.log("✅ Custom slider initialized successfully!");
 }
 
 // Initialize when DOM is ready
