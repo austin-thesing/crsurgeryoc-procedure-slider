@@ -1,8 +1,6 @@
 #!/usr/bin/env bun
 
 import { $ } from "bun";
-import { join } from "path";
-import { watch } from "fs";
 
 const isWatch = process.argv.includes("--watch");
 
@@ -22,12 +20,6 @@ const buildConfig = {
   },
 };
 
-// Function to copy and minify CSS file
-async function copyCSSFile() {
-  console.log("📄 Copying and minifying CSS file...");
-  await $`bunx csso procedure-slider.css --output dist/procedure-slider.css`;
-}
-
 // Function to run the full build
 async function runBuild() {
   // Ensure dist directory exists
@@ -40,9 +32,6 @@ async function runBuild() {
 
     if (result.success) {
       console.log("✅ Build completed successfully!");
-
-      // Copy CSS file to dist
-      await copyCSSFile();
 
       console.log("📊 Build stats:");
       result.outputs.forEach((output) => {
@@ -68,28 +57,17 @@ if (isWatch) {
   console.log("👀 Watching for changes...");
 
   // Watch JavaScript files
-  const jsResult = await Bun.build({
+  await Bun.build({
     ...buildConfig,
     watch: true,
   });
 
-  // Watch CSS file
-  watch("./procedure-slider.css", { persistent: true }, async (eventType, filename) => {
-    if (eventType === "change") {
-      console.log(`🎨 CSS file changed: ${filename}`);
-      await copyCSSFile();
-      console.log("✅ CSS updated!");
-    }
-  });
-
   console.log("📁 Watching files:");
   console.log("  - src/procedure-slider.js");
-  console.log("  - procedure-slider.css");
 }
 
 console.log("\n🎉 Build complete! Files created:");
 console.log("  - dist/procedure-slider.js (bundled JS)");
-console.log("  - dist/procedure-slider.css (styles)");
 console.log("\n💡 Upload these files to your Webflow project!");
 
 if (isWatch) {
