@@ -2,7 +2,9 @@
    Only includes essential styles for Swiper functionality */
 
 /* Essential Swiper container - only when initialized */
+
 .swiper {
+  overflow-x: hidden;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -51,14 +53,6 @@
 /* Graceful fallback when Swiper is not loaded */
 .swiper:not(.swiper-initialized) {
   /* Keeps your original Webflow styling intact */
-}
-
-/* Accessibility improvements */
-.swiper-button-next:focus,
-.swiper-button-prev:focus,
-.swiper-pagination-bullet:focus {
-  outline: 2px solid #ffffff;
-  outline-offset: 2px;
 }
 
 /* Custom scrollbar for fallback (if needed) */
